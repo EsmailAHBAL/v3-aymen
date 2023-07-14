@@ -180,11 +180,11 @@ const Nav = () => {
         <p className={styles.navName}>
           <Link href="/">{title}</Link>
         </p>
-        <ul className={styles.navMenu}>
+        <div className="flex justify-center items-center">
           {navigation?.map((listItem) => {
             return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
           })}
-        </ul>
+        </div>
         <div className={styles.navSearch}>
           {searchVisibility === SEARCH_HIDDEN && (
             <button onClick={handleOnToggleSearch} disabled={!searchIsLoaded}>

@@ -6,9 +6,10 @@ import Metadata from 'components/Metadata';
 
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
+import Image from 'next/image';
 
 const PostCard = ({ post, options = {} }) => {
-  const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
+  const { title, excerpt, slug, date, author, categories, isSticky = false, featuredImage } = post;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
@@ -36,16 +37,27 @@ const PostCard = ({ post, options = {} }) => {
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
         <h3
-          className={styles.postCardTitle}
+          className="text-xl md:text-2xl "
           dangerouslySetInnerHTML={{
             __html: title,
           }}
         />
       </Link>
-      <Metadata className={styles.postCardMetadata} {...metadata} />
+      <div
+        className="relative mx-4 
+      my-6
+       h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40"
+      >
+        {featuredImage ? (
+          <Image src={featuredImage.sourceUrl} fill alt="hello" className="w-full h-full bg-cover bg-center " />
+        ) : (
+          <div className="flex justify-center items-center h-full text-black"> no imaage for this</div>
+        )}
+      </div>
+
       {excerpt && (
         <div
-          className={styles.postCardContent}
+          className='text-lg '
           dangerouslySetInnerHTML={{
             __html: sanitizeExcerpt(excerpt),
           }}

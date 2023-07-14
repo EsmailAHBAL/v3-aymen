@@ -8,7 +8,7 @@ const NavListItem = ({ className, item }) => {
   });
 
   return (
-    <li key={item.id}>
+    <p key={item.id} className="mx-2">
       {!item.path.includes('http') && !item.target && (
         <Link href={item.path} title={item.title}>
           {item.label}
@@ -21,7 +21,7 @@ const NavListItem = ({ className, item }) => {
       )}
 
       {nestedItems.length > 0 && <ul className={className}>{nestedItems}</ul>}
-    </li>
+    </p>
   );
 };
 

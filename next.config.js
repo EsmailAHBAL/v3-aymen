@@ -5,6 +5,9 @@ const sitemap = require('./plugins/sitemap');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['smartminicar.com'],
+  },
   reactStrictMode: true,
   swcMinify: true,
 

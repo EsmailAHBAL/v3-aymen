@@ -10,6 +10,8 @@ import NextNProgress from 'nextjs-progressbar';
 import { getAllMenus } from 'lib/menus';
 
 import 'styles/globals.scss';
+import 'styles/globals.css';
+
 import 'styles/wordpress.scss';
 import variables from 'styles/_variables.module.scss';
 

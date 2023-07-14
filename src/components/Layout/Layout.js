@@ -1,14 +1,17 @@
 import { useRouter } from 'next/router';
 import { Helmet } from 'react-helmet';
 import styles from './Layout.module.scss';
-
+import { Nanum_Myeongjo } from 'next/font/google';
 import useSite from 'hooks/use-site';
 import { helmetSettingsFromMetadata } from 'lib/site';
 
 import Nav from 'components/Nav';
 import Main from 'components/Main';
 import Footer from 'components/Footer';
-
+const font = Nanum_Myeongjo({
+  subsets: ['latin'],
+  weight: '700',
+});
 const Layout = ({ children }) => {
   const router = useRouter();
   const { asPath } = router;
@@ -62,13 +65,15 @@ const Layout = ({ children }) => {
 
   return (
     <div className={styles.layoutContainer}>
-      <Helmet {...helmetSettings} />
+      <section className={font.className}>
+        <Helmet {...helmetSettings} />
 
-      <Nav />
+        <Nav />
 
-      <Main>{children}</Main>
+        <Main>{children}</Main>
 
-      <Footer />
+        <Footer />
+      </section>
     </div>
   );
 };

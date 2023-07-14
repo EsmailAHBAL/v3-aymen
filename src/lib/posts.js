@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { getApolloClient } from 'lib/apollo-client';
 
 import { updateUserAvatar } from 'lib/users';
@@ -136,7 +137,7 @@ export async function getAllPosts(options = {}) {
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
-    query: allPostsIncludesTypes[queryIncludes],
+    query: allPostsIncludesTypes['all'],
   });
 
   const posts = data?.data.posts.edges.map(({ node = {} }) => node);
