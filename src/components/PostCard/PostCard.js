@@ -2,8 +2,6 @@ import Link from 'next/link';
 
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
 
-import Metadata from 'components/Metadata';
-
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 import Image from 'next/image';
@@ -49,7 +47,12 @@ const PostCard = ({ post, options = {} }) => {
        h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40"
       >
         {featuredImage ? (
-          <Image src={featuredImage.sourceUrl} fill alt="hello" className="w-full h-full bg-cover bg-center " />
+          <Image
+            src={featuredImage.sourceUrl}
+            fill
+            alt="somethingFailted"
+            className="w-full h-full bg-cover bg-center "
+          />
         ) : (
           <div className="flex justify-center items-center h-full text-black"> no imaage for this</div>
         )}
@@ -57,7 +60,7 @@ const PostCard = ({ post, options = {} }) => {
 
       {excerpt && (
         <div
-          className='text-lg '
+          className="text-lg "
           dangerouslySetInnerHTML={{
             __html: sanitizeExcerpt(excerpt),
           }}
