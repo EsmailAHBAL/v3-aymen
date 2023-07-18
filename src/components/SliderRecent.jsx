@@ -13,7 +13,7 @@ const SliderRecents = () => {
     loop: true,
     rtl: true,
     breakpoints: {
-      '(min-width: 400px)': {
+      '(min-width: 460px)': {
         slides: { perView: 2, spacing: 5 },
       },
       '(min-width: 1000px)': {
