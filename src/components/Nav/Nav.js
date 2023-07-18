@@ -5,12 +5,11 @@ import { FaSearch } from 'react-icons/fa';
 import useSite from 'hooks/use-site';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
-import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
 import Section from 'components/Section';
 
 import styles from './Nav.module.scss';
-import NavListItem from 'components/NavListItem';
+import CategorySection from 'GategorySection';
 
 const SEARCH_VISIBLE = 'visible';
 const SEARCH_HIDDEN = 'hidden';
@@ -20,11 +19,8 @@ const Nav = () => {
 
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
 
-  const { metadata = {}, menus } = useSite();
+  const { metadata = {} } = useSite();
   const { title } = metadata;
-
-  const navigationLocation = process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
-  const navigation = findMenuByLocation(menus, navigationLocation);
 
   const { query, results, search, clearSearch, state } = useSearch({
     maxResults: 5,
@@ -180,10 +176,8 @@ const Nav = () => {
         <p className={styles.navName}>
           <Link href="/">{title}</Link>
         </p>
-        <div className="flex justify-center items-center">
-          {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
-          })}
+        <div className="w-full h-full  mx-3 flex justify-center items-center ">
+          <CategorySection />
         </div>
         <div className={styles.navSearch}>
           {searchVisibility === SEARCH_HIDDEN && (

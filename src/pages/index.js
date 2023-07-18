@@ -10,6 +10,7 @@ import Pagination from 'components/Pagination';
 
 import Hero from 'components/Hero';
 import CategorySection from 'GategorySection';
+import SliderRecents from 'components/SliderRecent';
 
 export default function Home({ posts, pagination }) {
   const { metadata = {} } = useSite();
@@ -18,7 +19,7 @@ export default function Home({ posts, pagination }) {
   return (
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <Hero />
       </div>
       <section className="max-w-7xl  mx-auto">
@@ -26,8 +27,17 @@ export default function Home({ posts, pagination }) {
       </section>
       <Section>
         <Container>
-          <h2 className="sr-only">Posts</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2">
+          <div className=" text-2xl md:text-4xl">Recent Posts</div>
+          <div>
+            <SliderRecents />
+          </div>
+        </Container>
+      </Section>
+      <Section>
+        <Container>
+          <div className=" text-2xl md:text-4xl">all Posts</div>
+          <div className="bg-gray-300 w-full h-1 my-2"></div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-3">
             {posts.map((post) => {
               return (
                 <li key={post.slug}>

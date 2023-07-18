@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import { Helmet } from 'react-helmet';
 import styles from './Layout.module.scss';
-import { Nanum_Myeongjo } from 'next/font/google';
+import { Libre_Baskerville } from 'next/font/google';
 import useSite from 'hooks/use-site';
 import { helmetSettingsFromMetadata } from 'lib/site';
 
 import Nav from 'components/Nav';
 import Main from 'components/Main';
-import Footer from 'components/Footer';
-const font = Nanum_Myeongjo({
+import MyFooter from 'components/MyFooter';
+const font = Libre_Baskerville({
   subsets: ['latin'],
   weight: '700',
 });
@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
 
         <Main>{children}</Main>
 
-        <Footer />
+        <MyFooter />
       </section>
     </div>
   );

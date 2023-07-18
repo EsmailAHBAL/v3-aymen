@@ -5,11 +5,17 @@ export const QUERY_ALL_CATEGORIES = gql`
     categories(first: 10000) {
       edges {
         node {
-          databaseId
-          description
-          id
-          name
-          slug
+          parent {
+            node {
+              name
+              children {
+                nodes {
+                  name
+                  slug
+                }
+              }
+            }
+          }
         }
       }
     }

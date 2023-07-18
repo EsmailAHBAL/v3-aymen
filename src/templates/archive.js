@@ -43,11 +43,10 @@ export default function TemplateArchive({
 
       <Header>
         <Container>
-          kkk
-          <h1>{Title || title}</h1>
+          <h1 className="text-sm text-gray-900 ">{Title || title}</h1>
           {metadata.description && (
             <p
-              className={styles.archiveDescription}
+              className="text-sm text-gray-600"
               dangerouslySetInnerHTML={{
                 __html: metadata.description,
               }}
