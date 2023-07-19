@@ -31,7 +31,7 @@ export default function Home({ posts, pagination }) {
       </Section>
       <Section>
         <Container>
-          <div className=" text-2xl md:text-4xl">all Posts</div>
+          <div className=" text-2xl md:text-4xl">all Posts .</div>
           <div className="bg-gray-300 w-full h-1 my-2 "></div>
           <ul className="grid grid-cols-1 w-4/5 place-content-center md:w-full  md:grid-cols-2 gap-x-3 gap-y-3 p-4 md:p-2">
             {posts.map((post) => {
