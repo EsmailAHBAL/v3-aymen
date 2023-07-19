@@ -56,7 +56,7 @@ export default function Home({ posts, pagination }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { posts, pagination } = await getPaginatedPosts({
     queryIncludes: 'archive',
   });
@@ -68,5 +68,6 @@ export async function getServerSideProps() {
         basePath: '/posts',
       },
     },
+    revalidate: 40,
   };
 }
