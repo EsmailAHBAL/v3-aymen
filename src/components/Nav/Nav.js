@@ -173,9 +173,11 @@ const Nav = () => {
   return (
     <nav className={styles.nav}>
       <Section className={styles.navSection}>
-        <p className={styles.navName}>
-          <Link href="/">{title}</Link>
-        </p>
+        <div className="hidden md:block text-xs">
+          <p className={styles.navName}>
+            <Link href="/">{title}</Link>
+          </p>
+        </div>
         <div className="w-full h-full  mx-3 flex justify-center items-center ">
           <CategorySection />
         </div>
@@ -190,6 +192,7 @@ const Nav = () => {
             <form ref={formRef} action="/search" data-search-is-active={!!query}>
               <input
                 type="search"
+                className="rounded-sm  border-red-300"
                 name="q"
                 value={query || ''}
                 onChange={handleOnSearch}

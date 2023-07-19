@@ -9,7 +9,6 @@ import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination';
 
 import Hero from 'components/Hero';
-import CategorySection from 'GategorySection';
 import SliderRecents from 'components/SliderRecent';
 
 export default function Home({ posts, pagination }) {
@@ -22,9 +21,6 @@ export default function Home({ posts, pagination }) {
       <div className="max-w-5xl mx-auto">
         <Hero />
       </div>
-      <section className="max-w-7xl  mx-auto">
-        <CategorySection />
-      </section>
       <Section>
         <Container>
           <div className=" text-2xl md:text-4xl">Recent Posts</div>
@@ -36,8 +32,8 @@ export default function Home({ posts, pagination }) {
       <Section>
         <Container>
           <div className=" text-2xl md:text-4xl">all Posts</div>
-          <div className="bg-gray-300 w-full h-1 my-2"></div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-3">
+          <div className="bg-gray-300 w-full h-1 my-2 "></div>
+          <ul className="grid grid-cols-1 w-4/5 place-content-center md:w-full  md:grid-cols-2 gap-x-3 gap-y-3 p-4 md:p-2">
             {posts.map((post) => {
               return (
                 <li key={post.slug}>

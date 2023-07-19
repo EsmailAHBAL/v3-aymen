@@ -2,7 +2,7 @@ import NextApp from 'next/app';
 
 import { SiteContext, useSiteContext } from 'hooks/use-site';
 import { SearchProvider } from 'hooks/use-search';
-
+import 'bulma/css/bulma.css';
 import { getSiteMetadata } from 'lib/site';
 import { getRecentPosts } from 'lib/posts';
 import { getCategories } from 'lib/categories';

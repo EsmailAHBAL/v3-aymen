@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
 
 import { FaMapPin } from 'react-icons/fa';
+import Image from 'next/image';
 
 const PostCard = ({ post, options = {} }) => {
-  const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
+  const { title, excerpt, slug, date, author, categories, isSticky = false, featuredImage } = post;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
@@ -23,45 +24,46 @@ const PostCard = ({ post, options = {} }) => {
   }
 
   return (
-    <article className="flex flex-col items-center gap-4 md:flex-row lg:gap-6 mt-4">
-      <div className="group relative block h-7 w-full shrink-0 self-start overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-24 md:w-24 lg:h-40 lg:w-40">
-        <img
-          src="https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          loading="lazy"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+    <article className="group">
+      {featuredImage ? (
+        <Image
+          height={500}
+          width={500}
+          priority={true}
+          alt="Lava"
+          src={featuredImage.sourceUrl}
+          className="h-full w-full md:h-72 rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%] mb-4"
         />
-      </div>
+      ) : (
+        <div
+          className="mt-4 h-64 w-full rounded-sm object-cover shadow-xl transition group-hover:grayscale-[50%]
+    
+        bg-gray-100/25"
+        ></div>
+      )}
 
-      <div className="flex flex-col gap-2">
-        <span className="text-sm text-gray-400">April 2, 2022</span>
-
-        <h2 className="text-xl font-bold text-gray-800">
+      <div className="p-4">
+        <h3 className="text-lg font-medium text-gray-900">
           {isSticky && <FaMapPin aria-label="Sticky Post" />}
-
           <Link href={postPathBySlug(slug)}>
             <h3
-              className="transition duration-100 hover:text-gray-500 active:text-gray-600"
+              className="transition duration-100 hover:text-gray-500 active:text-gray-600 md:my-2 my-4 line-clamp-3"
               dangerouslySetInnerHTML={{
                 __html: title,
               }}
             />
-          </Link>
-        </h2>
+          </Link>{' '}
+        </h3>
 
         {excerpt && (
           <div
-            className="text-xs "
+            className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500"
             dangerouslySetInnerHTML={{
               __html: sanitizeExcerpt(excerpt),
             }}
           />
         )}
-        <div>
-          <div className="font-semibold text-grays-500 transition duration-100 hover:text-gray-600 active:text-rose-700">
-            Read more
-          </div>
-        </div>
+        <div></div>
       </div>
     </article>
   );

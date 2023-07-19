@@ -125,10 +125,10 @@ export async function getCategoryBySlug(slug) {
  * getCategories
  */
 
-export async function getCategories({ count } = {}) {
+export async function getCategories() {
   const { categories } = await getAllCategories();
   return {
-    categories: categories.slice(0, count),
+    categories: categories,
   };
 }
 

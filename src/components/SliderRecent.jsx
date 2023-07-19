@@ -4,6 +4,7 @@ import 'keen-slider/keen-slider.min.css';
 import useSite from 'hooks/use-site';
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SliderRecents = () => {
   const { recentPosts = [] } = useSite();
@@ -17,7 +18,7 @@ const SliderRecents = () => {
         slides: { perView: 2, spacing: 5 },
       },
       '(min-width: 1000px)': {
-        slides: { perView: 3, spacing: 15 },
+        slides: { perView: 2, spacing: 10 },
       },
     },
   });
@@ -26,49 +27,41 @@ const SliderRecents = () => {
     <div ref={sliderRef} className="keen-slider w-full h-auto mt-4">
       {hasRecentPosts &&
         recentPosts.map((p) => {
-          const { title, id, excerpt, slug } = p;
+          const { title, id, excerpt, slug, featuredImage } = p;
           return (
             <div className="keen-slider__slide number-slide1  rounded-xl" key={id}>
-              <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
-                <img
-                  alt="Home"
-                  src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  className="h-56 w-full rounded-md object-cover"
-                />
-
-                <div className="mt-2">
-                  <dl>
-                    <div>
-                      <dt className="sr-only">Price</dt>
-
-                      <dd className="text-sm text-gray-500">SmartMiniCar</dd>
-                    </div>
-
-                    <div>
-                      <dt className="sr-only">title</dt>
-
-                      <dd className="font-lg">{title}</dd>
-                    </div>
-                  </dl>
-                </div>
+              <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 ">
+                {featuredImage ? (
+                  <Image
+                    height={500}
+                    width={500}
+                    priority={true}
+                    alt="Lava"
+                    src={featuredImage.sourceUrl}
+                    className="h-96 md:h-56 bg-cover bg-center w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%] mb-4"
+                  />
+                ) : (
+                  <div
+                    className="mt-4 h-56 w-full rounded-sm object-cover shadow-xl transition group-hover:grayscale-[50%]
+    
+        bg-gray-100/25"
+                  ></div>
+                )}
+                <div className="py-4 h-24 line-clamp-3 ">{title}</div>
                 <div className=""></div>
                 {excerpt && (
                   <div
-                    className="text-xs h-16"
+                    className="text-xs line-clamp-2 "
                     dangerouslySetInnerHTML={{
                       __html: sanitizeExcerpt(excerpt),
                     }}
                   />
                 )}
-                <div></div>
-                <div className="text-center">
+                <div className="text-center mt-4">
                   <Link href={postPathBySlug(slug)}>
-                    <button
-                      className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
-                      href="/download"
-                    >
+                    <button className="inline-block rounded bg-gradient-to-r from-black via-black to-gray-400 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
                       <span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent">
-                        Download
+                        Read More
                       </span>
                     </button>
                   </Link>

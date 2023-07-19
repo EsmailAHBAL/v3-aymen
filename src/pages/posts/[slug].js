@@ -18,6 +18,7 @@ import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
 
 import styles from 'styles/pages/Post.module.scss';
+import GetRecentsPost from 'components/GetRecentPost';
 
 export default function Post({ post, socialImage, related }) {
   const {
@@ -71,67 +72,73 @@ export default function Post({ post, socialImage, related }) {
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
-
-      <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
-        <h1
-          className={styles.title}
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-        <Metadata
-          className={styles.postMetadata}
-          date={date}
-          author={author}
-          categories={categories}
-          options={metadataOptions}
-          isSticky={isSticky}
-        />
-      </Header>
-
-      <Content>
-        <Section>
-          <Container>
-            <div
-              className={styles.content}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_320px] lg:gap-8">
+        <div>
+          <Header>
+            {featuredImage && (
+              <FeaturedImage
+                {...featuredImage}
+                src={featuredImage.sourceUrl}
+                dangerouslySetInnerHTML={featuredImage.caption}
+              />
+            )}
+            <h1
+              className={styles.title}
               dangerouslySetInnerHTML={{
-                __html: content,
+                __html: title,
               }}
             />
-          </Container>
-        </Section>
-      </Content>
+            <Metadata
+              className={styles.postMetadata}
+              date={date}
+              author={author}
+              categories={categories}
+              options={metadataOptions}
+              isSticky={isSticky}
+            />
+          </Header>
 
-      <Section className={styles.postFooter}>
-        <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
-          {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
-            <div className={styles.relatedPosts}>
-              {relatedPostsTitle.name ? (
-                <span>
-                  More from <Link href={relatedPostsTitle.link}>{relatedPostsTitle.name}</Link>
-                </span>
-              ) : (
-                <span>More Posts</span>
+          <Content>
+            <Section>
+              <Container>
+                <div
+                  className={styles.content}
+                  dangerouslySetInnerHTML={{
+                    __html: content,
+                  }}
+                />
+              </Container>
+            </Section>
+          </Content>
+
+          <Section className={styles.postFooter}>
+            <Container>
+              <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+              {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
+                <div className={styles.relatedPosts}>
+                  {relatedPostsTitle.name ? (
+                    <span>
+                      More from <Link href={relatedPostsTitle.link}>{relatedPostsTitle.name}</Link>
+                    </span>
+                  ) : (
+                    <span>More Posts</span>
+                  )}
+                  <ul>
+                    {relatedPostsList.map((post) => (
+                      <li key={post.title}>
+                        <Link href={postPathBySlug(post.slug)}>{post.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-              <ul>
-                {relatedPostsList.map((post) => (
-                  <li key={post.title}>
-                    <Link href={postPathBySlug(post.slug)}>{post.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </Container>
-      </Section>
+            </Container>
+          </Section>
+        </div>
+        <div>
+          <GetRecentsPost />
+        </div>
+      </div>
     </Layout>
   );
 }

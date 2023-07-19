@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
-    "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "bulma": "^0.9.4",
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
     "fuse.js": "^6.6.2",
@@ -34,6 +34,7 @@
     "nextjs-progressbar": "^0.0.16",
     "parameterize": "^1.0.0",
     "path": "^0.12.7",
+    "pnpm": "^8.6.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet": "^6.1.0",
@@ -44,6 +45,7 @@
     "style.css": "^1.0.3"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.2.1",
     "eslint": "8.39.0",
