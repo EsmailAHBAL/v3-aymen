@@ -174,7 +174,7 @@ const Nav = () => {
     <nav className={styles.nav}>
       <Section className={styles.navSection}>
         <div className="hidden md:block text-xs">
-          <p className={styles.navName}>
+          <p>
             <Link href="/">{title}</Link>
           </p>
         </div>
