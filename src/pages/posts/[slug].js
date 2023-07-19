@@ -72,7 +72,7 @@ export default function Post({ post, socialImage, related }) {
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_120px] lg:gap-8">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_320px] lg:gap-8">
         <div>
           <Header>
             {featuredImage && (
